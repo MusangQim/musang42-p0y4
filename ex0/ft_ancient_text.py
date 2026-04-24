@@ -4,14 +4,22 @@ import typing
 
 
 def main() -> None:
-    filename = sys.argv
-    if filename:
+    if len(sys.argv) < 2:
         print("Usage: ft_ancient_text.py <file>\n")
         exit()
-    else:
-        print("=== Cyber Archives Recovery ===")
-        print("Accessing file")
-
+    print("=== Cyber Archives Recovery ===")
+    print(f"Accessing file '{sys.argv[1]}'")
+    try:
+        file = open(sys.argv[1], "r")
+        content = file.read()
+        file.close()
+        print("---")
+        print(content)
+        print("---")
+    except FileNotFoundError as a:
+        print(f"Error opening file '{sys.argv[1]}': {a}\n")
+    except PermissionError as b:
+        print(f"Error opening file '{sys.argv[1]}': {b}\n")
 
 
 if __name__ == "__main__":
