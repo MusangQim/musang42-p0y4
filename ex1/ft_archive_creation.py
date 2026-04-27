@@ -9,7 +9,7 @@ def main() -> None:
         exit()
     print("=== Cyber Archives Recovery & Preservation ===")
     print(f"Accessing file '{sys.argv[1]}'")
-    try:        
+    try:
     except FileNotFoundError as a:
         print(f"Error opening file '{sys.argv[1]}': {a}\n")
     except PermissionError as b:
