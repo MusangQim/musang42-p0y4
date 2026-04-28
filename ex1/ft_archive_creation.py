@@ -33,12 +33,12 @@ def main() -> None:
             print(line)
         print("\n---")
         # --- ENTERING INPUT FOR NEW FILE NAME ---
-        new_input = input("Enter new file name(or empty):")
+        new_input = input("Enter new file name (or empty): ")
         if new_input:
             new_file: typing.IO = open(new_input, "w")
+            print(f"Saving data to '{new_input}'")
             new_file.write('\n'.join(transformed))
             new_file.close()
-            print(f"Saving data to '{new_input}'")
             print(f"Data saved in file '{new_input}'")
         else:
             print("Not saving data.")
