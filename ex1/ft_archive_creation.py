@@ -20,19 +20,24 @@ def main() -> None:
         # --- FILE CLOSE ---
         file.close()
         print(f"File '{sys.argv[1]}' closed.\n")
+
         # --- TRANSFORMING FILE ADDED '#' ---
         print("Transform data:")
         print("---\n")
         lines = content.split('\n')
+        transformed = []
         for line in lines:
             new_line = line + '#'
-            print(new_line)
+            transformed.append(new_line)
+        for line in transformed:
+            print(line)
         print("\n---")
         # --- ENTERING INPUT FOR NEW FILE NAME ---
         new_input = input("Enter new file name(or empty):")
-        print(new_input)
         if new_input:
-            file.write()
+            new_file: typing.IO = open(new_input, "w")
+            new_file.write('\n'.join(transformed))
+            new_file.close()
             print(f"Saving data to '{new_input}'")
             print(f"Data saved in file '{new_input}'")
         else:
