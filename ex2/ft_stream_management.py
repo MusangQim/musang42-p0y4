@@ -33,20 +33,25 @@ def main() -> None:
             print(line)
         print("\n---")
         # --- ENTERING INPUT FOR NEW FILE NAME ---
-        new_input = input("Enter new file name (or empty): ")
+        sys.stdout.write("Enter new file name (or empty): ")
+        sys.stdout.flush()
+        new_input = sys.stdin.readline().strip()
         if new_input:
-            new_file: typing.IO = open(new_input, "w")
-            print(f"Saving data to '{new_input}'")
-            new_file.write('\n'.join(transformed))
-            new_file.close()
-            print(f"Data saved in file '{new_input}'")
+            try:
+                print(f"Saving data to '{new_input}'")
+                new_file: typing.IO = open(new_input, "w")
+                new_file.write('\n'.join(transformed))
+                new_file.close()
+                print(f"Data saved in file '{new_input}'")
+            except (FileNotFoundError, PermissionError) as a:
+                sys.stderr.write(f"[STDERR] Error opening file"
+                                 f" '{new_input}': {a}\n")
+                sys.stderr.flush()
+                print("Data not saved.")
         else:
             print("Not saving data.")
-    except FileNotFoundError as a:
-        sys.stderr.write(f"Error opening file '{sys.argv[1]}': {a}\n")
-        sys.stderr.flush()
-    except PermissionError as b:
-        sys.stderr.write(f"Error opening file '{sys.argv[1]}': {b}\n")
+    except (FileNotFoundError, PermissionError) as b:
+        sys.stderr.write(f"[STDERR] Error opening file '{sys.argv[1]}': {b}\n")
         sys.stderr.flush()
 
 
