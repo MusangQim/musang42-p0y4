@@ -26,8 +26,12 @@ def main() -> None:
     print(attempt_2)
     print()
     print("Using 'secure_archive' to read from a regular file:")
-    attempt_1 = secure_archive("/not/existing/file", "read")
-    print(attempt_1)
+    attempt_3 = secure_archive("ancient_fragment.txt", "read")
+    print(attempt_3)
+    print()
+    print("Using 'secure_archive' to write previous content to a new file:")
+    attempt_4 = secure_archive("ancient_fragment.txt", "write", attempt_3[1])
+    print(attempt_4)
 
 
 if __name__ == "__main__":
