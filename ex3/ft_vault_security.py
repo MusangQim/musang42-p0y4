@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-def secure_archive(filename: str, action: str = "", content: str = "") -> tuple:
+def secure_archive(filename: str, action: str = "",
+                   content: str = "") -> tuple:
     try:
         if action == "read":
             with open(filename, "r") as f:
@@ -11,7 +12,7 @@ def secure_archive(filename: str, action: str = "", content: str = "") -> tuple:
                 f.write(content)
                 return (True, "Content successfully written to file")
     except (PermissionError, FileNotFoundError) as a:
-        return(False, str(a))
+        return (False, str(a))
     return (False, "Invalid action")
 
 
